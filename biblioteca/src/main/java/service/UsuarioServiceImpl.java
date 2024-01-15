@@ -1,6 +1,7 @@
 package service;
 
 import model.Usuario;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import repository.UsuarioRepository;
 
@@ -13,6 +14,14 @@ import java.util.List;
  */
 @Service
 public class UsuarioServiceImpl implements UsuarioService {
+
+    private final UsuarioRepository usuarioRepository;
+
+    @Autowired
+    public UsuarioServiceImpl(UsuarioRepository usuarioRepository) {
+        this.usuarioRepository = usuarioRepository;
+    }
+
     @Override
     public Usuario criarUsuario(String nome, String email, String senha) {
         Usuario usuario = new Usuario(nome, email, senha);
@@ -27,11 +36,5 @@ public class UsuarioServiceImpl implements UsuarioService {
     @Override
     public List<Usuario> obterTodosUsuarios() {
         return usuarioRepository.findAll();
-    }
-
-    private UsuarioRepository usuarioRepository;
-
-    public UsuarioServiceImpl(UsuarioRepository usuarioRepository) {
-        this.usuarioRepository = usuarioRepository;
     }
 }

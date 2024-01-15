@@ -14,6 +14,13 @@ import java.util.List;
  */
 @Service
 public class LivrosServiceImpl implements LivroService {
+    private final LivroRepository livroRepository;
+
+    @Autowired
+    public LivrosServiceImpl(LivroRepository livroRepository) {
+        this.livroRepository = livroRepository;
+    }
+
     @Override
     public Livro criarLivro(String titulo, String autor, String genero) {
         Livro livro = new Livro(titulo, autor, genero);
@@ -28,12 +35,5 @@ public class LivrosServiceImpl implements LivroService {
     @Override
     public List<Livro> obterTodosLivros() {
         return livroRepository.findAll();
-    }
-
-    private LivroRepository livroRepository;
-
-    @Autowired
-    public LivrosServiceImpl(LivroRepository livroRepository) {
-        this.livroRepository = livroRepository;
     }
 }

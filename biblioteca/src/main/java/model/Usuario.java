@@ -15,24 +15,35 @@ public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @Column(name = "nome")
     private String nome;
+
     @Column(name = "email")
     private String email;
-    @Column(name = "email")
+
+    @Column(name = "senha")
     private String senha;
+
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
     private List<Emprestimo> emprestimos;
 
-    public Usuario(String nome, String email, String senha) {
-
+    public Usuario() {
+        // Construtor vazio necessário para o Hibernate
     }
 
-    public Usuario(Long id, String nome, String email, String senha) {
-        this.id = id;
+    public Usuario(String nome, String email, String senha) {
         this.nome = nome;
         this.email = email;
         this.senha = senha;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     public Long getId() {
