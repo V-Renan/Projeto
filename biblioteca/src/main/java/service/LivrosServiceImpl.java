@@ -1,6 +1,7 @@
 package service;
 
 import model.Livro;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import repository.LivroRepository;
 
@@ -15,18 +16,24 @@ import java.util.List;
 public class LivrosServiceImpl implements LivroService {
     @Override
     public Livro criarLivro(String titulo, String autor, String genero) {
-        return null;
+        Livro livro = new Livro(titulo, autor, genero);
+        return livroRepository.save(livro);
     }
 
     @Override
     public Livro obterLivroPorID(Long id) {
-        return null;
+        return livroRepository.findById(id).orElse(null);
     }
 
     @Override
     public List<Livro> obterTodosLivros() {
-        return null;
+        return livroRepository.findAll();
     }
 
     private LivroRepository livroRepository;
+
+    @Autowired
+    public LivrosServiceImpl(LivroRepository livroRepository) {
+        this.livroRepository = livroRepository;
+    }
 }

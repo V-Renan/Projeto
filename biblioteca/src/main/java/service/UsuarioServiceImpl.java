@@ -2,6 +2,7 @@ package service;
 
 import model.Usuario;
 import org.springframework.stereotype.Service;
+import repository.UsuarioRepository;
 
 import java.util.List;
 
@@ -14,16 +15,23 @@ import java.util.List;
 public class UsuarioServiceImpl implements UsuarioService {
     @Override
     public Usuario criarUsuario(String nome, String email, String senha) {
-        return null;
+        Usuario usuario = new Usuario(nome, email, senha);
+        return usuarioRepository.save(usuario);
     }
 
     @Override
     public Usuario obterUsuarioPorID(Long id) {
-        return null;
+        return usuarioRepository.findById(id).orElse(null);
     }
 
     @Override
     public List<Usuario> obterTodosUsuarios() {
-        return null;
+        return usuarioRepository.findAll();
+    }
+
+    private UsuarioRepository usuarioRepository;
+
+    public UsuarioServiceImpl(UsuarioRepository usuarioRepository) {
+        this.usuarioRepository = usuarioRepository;
     }
 }

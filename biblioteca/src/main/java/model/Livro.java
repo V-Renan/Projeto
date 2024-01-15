@@ -1,7 +1,5 @@
 package model;
 
-import jdk.jfr.Enabled;
-
 import javax.persistence.*;
 
 /**
@@ -23,7 +21,7 @@ public class Livro {
     @Column(name = "genero")
     private String genero;
 
-    public Livro() {
+    public Livro(String titulo, String autor, String genero) {
 
     }
 
