@@ -2,6 +2,7 @@ package service;
 
 import model.Livro;
 import org.springframework.stereotype.Service;
+import repository.LivroRepository;
 
 import java.util.List;
 
@@ -26,4 +27,6 @@ public class LivrosServiceImpl implements LivroService {
     public List<Livro> obterTodosLivros() {
         return null;
     }
+
+    private LivroRepository livroRepository;
 }
