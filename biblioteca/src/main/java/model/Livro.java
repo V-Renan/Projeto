@@ -25,6 +25,9 @@ public class Livro {
 
     }
 
+    public Livro() {
+    }
+
     public Livro(int Long, String titulo, String autor, String genero) {
         this.id = id;
         this.titulo = titulo;
